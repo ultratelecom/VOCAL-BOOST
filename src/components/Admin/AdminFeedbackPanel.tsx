@@ -182,9 +182,9 @@ export default function AdminFeedbackPanel() {
                       {formatDate(submission.submittedAt)} • {formatTime(submission.duration)}
                     </p>
                     {submission.notes && (
-                      <p className="text-xs text-gray-600 mt-1 truncate">
-                        "{submission.notes}"
-                      </p>
+                                              <p className="text-xs text-gray-600 mt-1 truncate">
+                          &quot;{submission.notes}&quot;
+                        </p>
                     )}
                   </div>
                 </div>

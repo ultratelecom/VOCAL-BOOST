@@ -37,7 +37,7 @@ export default function PeerPage() {
         <div className="mb-8">
           <h1 className="text-3xl font-light text-gray-900 mb-2">Peer Review</h1>
           <p className="text-gray-600">
-            Review fellow students' submissions and get feedback on your own work
+            Review fellow students&apos; submissions and get feedback on your own work
           </p>
         </div>
 

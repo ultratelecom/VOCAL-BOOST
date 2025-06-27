@@ -136,7 +136,7 @@ export default function LessonAssignment({ lesson }: LessonAssignmentProps) {
           <span className="text-gray-600">Not yet submitted</span>
         </div>
         <p className="text-sm text-gray-500 mt-2">
-          Once you submit this assignment, you'll see your submission status here.
+                        Once you submit this assignment, you&apos;ll see your submission status here.
         </p>
       </div>
     </div>

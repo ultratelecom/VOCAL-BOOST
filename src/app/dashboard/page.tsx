@@ -32,7 +32,7 @@ export default function DashboardPage() {
       <div className="max-w-6xl mx-auto px-6 py-8">
         {/* Progress Overview */}
         <div className="mb-12">
-          <h1 className="text-3xl font-light text-gray-900 mb-2">Welcome to Shantal's Vocal Class</h1>
+          <h1 className="text-3xl font-light text-gray-900 mb-2">Welcome to Shantal&apos;s Vocal Class</h1>
           <p className="text-gray-600 mb-8">Continue building your vocal skills through structured modules</p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

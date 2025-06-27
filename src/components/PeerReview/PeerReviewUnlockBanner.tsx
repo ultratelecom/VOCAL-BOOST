@@ -14,7 +14,7 @@ export default function PeerReviewUnlockBanner() {
       
       <p className="text-gray-600 mb-6 max-w-md mx-auto leading-relaxed">
         Complete 3 more lessons to unlock peer review. This feature allows you to review 
-        other students' work and receive feedback on your own submissions.
+        other students&apos; work and receive feedback on your own submissions.
       </p>
       
       <div className="space-y-3">

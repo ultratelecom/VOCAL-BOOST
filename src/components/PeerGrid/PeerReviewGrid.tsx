@@ -16,7 +16,7 @@ export default function PeerReviewGrid({ submissions, assignmentId }: PeerReview
         </div>
         <h3 className="text-lg font-medium text-gray-900 mb-2">No submissions yet</h3>
         <p className="text-gray-600 max-w-md mx-auto">
-          Be the first to submit your assignment! Once you submit, you'll be able to see and comment on your classmates' work.
+          Be the first to submit your assignment! Once you submit, you&apos;ll be able to see and comment on your classmates&apos; work.
         </p>
       </div>
     )

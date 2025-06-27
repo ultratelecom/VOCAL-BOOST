@@ -164,7 +164,7 @@ export default function AssignmentUpload({ assignment }: AssignmentUploadProps) 
                       Click the button below to start recording your video performance
                     </p>
                     <p className="text-sm text-gray-500 mb-4">
-                      Make sure you're in a well-lit area and your camera is positioned properly
+                      Make sure you&apos;re in a well-lit area and your camera is positioned properly
                     </p>
                     <button
                       onClick={handleStartRecording}

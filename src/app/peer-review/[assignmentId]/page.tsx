@@ -20,7 +20,7 @@ export default async function PeerReviewPage({ params }: PeerReviewPageProps) {
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-6">
           <h1 className="text-2xl font-medium text-gray-900 mb-4">Assignment not found</h1>
-          <p className="text-gray-600 mb-8">The assignment you're looking for doesn't exist.</p>
+          <p className="text-gray-600 mb-8">The assignment you&apos;re looking for doesn&apos;t exist.</p>
           <Link 
             href="/dashboard" 
             className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors"

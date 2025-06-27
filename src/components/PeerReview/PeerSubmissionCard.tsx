@@ -160,7 +160,7 @@ export default function PeerSubmissionCard({ submission, onReview }: PeerSubmiss
           
           {submission.hasUserReviewed && (
             <span className="text-green-600 text-sm font-medium">
-              ✓ You've reviewed this
+                              ✓ You&apos;ve reviewed this
             </span>
           )}
         </div>
@@ -212,8 +212,8 @@ export default function PeerSubmissionCard({ submission, onReview }: PeerSubmiss
                       {renderStars(4)}
                     </div>
                   </div>
-                  <p className="text-sm text-gray-700">
-                    "Great breathing control! Your technique has really improved."
+                                    <p className="text-sm text-gray-700">
+                    &quot;Great breathing control! Your technique has really improved.&quot;
                   </p>
                 </div>
                 <div className="bg-white p-3 rounded border">
@@ -224,7 +224,7 @@ export default function PeerSubmissionCard({ submission, onReview }: PeerSubmiss
                     </div>
                   </div>
                   <p className="text-sm text-gray-700">
-                    "Excellent work on the scales. Your pitch accuracy is impressive!"
+                    &quot;Excellent work on the scales. Your pitch accuracy is impressive!&quot;
                   </p>
                 </div>
               </div>

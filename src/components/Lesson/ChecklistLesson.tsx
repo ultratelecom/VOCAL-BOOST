@@ -247,7 +247,7 @@ export default function ChecklistLesson({ lesson, progress, onProgressUpdate }: 
         <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
           <div className="text-green-600 text-4xl mb-2">🎉</div>
           <h3 className="text-lg font-semibold text-green-900 mb-2">
-            Excellent work! You've completed all exercises.
+            Excellent work! You&apos;ve completed all exercises.
           </h3>
           <p className="text-green-700 mb-4">
             Session completed in {formatTime(sessionDuration)}
@@ -267,7 +267,7 @@ export default function ChecklistLesson({ lesson, progress, onProgressUpdate }: 
         <ul className="space-y-2 text-gray-700">
           <li className="flex items-start">
             <span className="text-blue-600 mr-2 mt-1">1.</span>
-            Click "Start Practice Session" to begin timing your practice
+            Click &quot;Start Practice Session&quot; to begin timing your practice
           </li>
           <li className="flex items-start">
             <span className="text-blue-600 mr-2 mt-1">2.</span>
@@ -275,11 +275,11 @@ export default function ChecklistLesson({ lesson, progress, onProgressUpdate }: 
           </li>
           <li className="flex items-start">
             <span className="text-blue-600 mr-2 mt-1">3.</span>
-            Use "Show Tips" for additional guidance on any exercise
+            Use &quot;Show Tips&quot; for additional guidance on any exercise
           </li>
           <li className="flex items-start">
             <span className="text-blue-600 mr-2 mt-1">4.</span>
-            Click "End Session" when you're finished practicing
+            Click &quot;End Session&quot; when you&apos;re finished practicing
           </li>
         </ul>
       </div>
