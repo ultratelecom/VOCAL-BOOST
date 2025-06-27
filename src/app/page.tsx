@@ -93,9 +93,9 @@ export default function Home() {
             <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-purple-600 text-xl">👥</span>
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Peer Reviews</h3>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">Community</h3>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Get feedback from fellow students and collaborate on your journey
+              Share your progress and get feedback from fellow vocalists
             </p>
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function Home() {
       <footer className="border-t border-gray-200 mt-20">
         <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="text-center text-gray-500 text-sm">
-            © 2024 VocalTraining. All rights reserved.
+            © 2024 Vocal Boost. All rights reserved.
           </div>
         </div>
       </footer>

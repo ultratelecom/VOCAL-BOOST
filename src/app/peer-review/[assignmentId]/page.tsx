@@ -38,9 +38,14 @@ export default async function PeerReviewPage({ params }: PeerReviewPageProps) {
       <header className="border-b border-gray-200 bg-white">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <Link href="/dashboard" className="text-2xl font-semibold text-gray-900">
-              VocalTraining
-            </Link>
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">🎵</span>
+              </div>
+              <Link href="/dashboard" className="text-2xl font-semibold text-gray-900">
+                Vocal Boost
+              </Link>
+            </div>
             <div className="flex items-center space-x-4">
               <Link 
                 href="/dashboard" 
@@ -111,10 +116,10 @@ export default async function PeerReviewPage({ params }: PeerReviewPageProps) {
             </Link>
             
             <Link
-              href="/peer"
+              href="/community"
               className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors"
             >
-              All peer reviews
+              Visit Community
             </Link>
           </div>
         </div>
