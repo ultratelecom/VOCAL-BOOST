@@ -10,9 +10,15 @@ export default function Home() {
       <nav className="border-b border-gray-200 bg-white">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-semibold text-gray-900">
-              VocalTraining
-            </h1>
+            <div className="flex items-center space-x-3">
+              {/* Logo */}
+              <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">🎵</span>
+              </div>
+              <h1 className="text-2xl font-semibold text-gray-900">
+                Vocal Boost
+              </h1>
+            </div>
             <div className="space-x-3">
               <Link 
                 href="/login" 
@@ -34,9 +40,22 @@ export default function Home() {
       {/* Hero Section */}
       <div className="max-w-4xl mx-auto px-6 py-20">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-light text-gray-900 mb-6">
+          {/* Main Logo/Brand */}
+          <div className="mb-8">
+            <div className="w-20 h-20 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <span className="text-white font-bold text-3xl">🎵</span>
+            </div>
+            <h1 className="text-5xl font-light text-gray-900 mb-2">
+              Vocal Boost
+            </h1>
+            <p className="text-lg text-purple-600 font-medium mb-6">
+              with Shantal&apos;s Vocal Class
+            </p>
+          </div>
+          
+          <h2 className="text-4xl font-light text-gray-900 mb-6">
             Master your voice
-          </h1>
+          </h2>
           <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
             Professional vocal training with interactive lessons, real-time feedback, and peer collaboration
           </p>
