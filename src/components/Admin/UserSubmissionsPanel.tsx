@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { mockAdminFeedback, AdminFeedback, getPendingFeedback } from '../../lib/mockAdminFeedback'
 import AdminVoiceReplyBox from './AdminVoiceReplyBox'

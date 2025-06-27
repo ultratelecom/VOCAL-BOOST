@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { mockPeerSubmissions, PeerSubmission } from '../../lib/mockPeerSubmissions'
 import PeerSubmissionCard from './PeerSubmissionCard'

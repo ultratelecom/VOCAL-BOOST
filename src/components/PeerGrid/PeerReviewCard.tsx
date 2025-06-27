@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { PeerSubmission } from '../../lib/mockPeerReviewData'
 import PeerCommentBox from './PeerCommentBox'

@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { getUserStats } from '../../lib/mockUsers'
 import { getFeedbackStats } from '../../lib/mockAdminFeedback'
