@@ -89,7 +89,7 @@ export default function AssignmentPage() {
               </p>
               <div className="flex space-x-3">
                 <Link
-                  href="/warmup"
+                  href={`/warmup?returnTo=${assignmentId}`}
                   className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors inline-flex items-center space-x-2"
                 >
                   <span>🎵</span>

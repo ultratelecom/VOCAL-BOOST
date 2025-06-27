@@ -94,9 +94,11 @@ export default function DashboardPage() {
               <span className="text-sm text-gray-600">Welcome, {firstName}</span>
               <PeerReviewDropdown completedAssignments={completedAssignments} />
               <NotificationDropdown />
-              <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-sm font-medium">{firstName[0]}</span>
-              </div>
+              <Link href="/profile">
+                <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors cursor-pointer">
+                  <span className="text-white text-sm font-medium">{firstName[0]}</span>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

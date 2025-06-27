@@ -14,6 +14,8 @@ export interface AdminUser {
     currentStreak: number;
     averageScore: number;
     submissionsCount: number;
+    currentModule: number;
+    currentModuleTitle: string;
   };
   skillLevels: {
     breathing: number;
@@ -44,7 +46,9 @@ export const mockAdminUsers: AdminUser[] = [
       practiceHours: 45,
       currentStreak: 7,
       averageScore: 85,
-      submissionsCount: 8
+      submissionsCount: 8,
+      currentModule: 2,
+      currentModuleTitle: 'Pitch Control & Accuracy'
     },
     skillLevels: {
       breathing: 85,
@@ -73,7 +77,9 @@ export const mockAdminUsers: AdminUser[] = [
       practiceHours: 8,
       currentStreak: 2,
       averageScore: 78,
-      submissionsCount: 2
+      submissionsCount: 2,
+      currentModule: 1,
+      currentModuleTitle: 'Breathing Fundamentals'
     },
     skillLevels: {
       breathing: 45,
@@ -102,7 +108,9 @@ export const mockAdminUsers: AdminUser[] = [
       practiceHours: 120,
       currentStreak: 0,
       averageScore: 92,
-      submissionsCount: 15
+      submissionsCount: 15,
+      currentModule: 4,
+      currentModuleTitle: 'Advanced Performance'
     },
     skillLevels: {
       breathing: 95,
@@ -131,7 +139,9 @@ export const mockAdminUsers: AdminUser[] = [
       practiceHours: 55,
       currentStreak: 4,
       averageScore: 82,
-      submissionsCount: 10
+      submissionsCount: 10,
+      currentModule: 3,
+      currentModuleTitle: 'Vocal Range & Dynamics'
     },
     skillLevels: {
       breathing: 75,
@@ -160,7 +170,9 @@ export const mockAdminUsers: AdminUser[] = [
       practiceHours: 32,
       currentStreak: 12,
       averageScore: 96,
-      submissionsCount: 6
+      submissionsCount: 6,
+      currentModule: 2,
+      currentModuleTitle: 'Pitch Control & Accuracy'
     },
     skillLevels: {
       breathing: 98,
@@ -189,7 +201,9 @@ export const mockAdminUsers: AdminUser[] = [
       practiceHours: 12,
       currentStreak: 0,
       averageScore: 65,
-      submissionsCount: 3
+      submissionsCount: 3,
+      currentModule: 1,
+      currentModuleTitle: 'Breathing Fundamentals'
     },
     skillLevels: {
       breathing: 40,

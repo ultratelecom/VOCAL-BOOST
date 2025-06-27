@@ -59,6 +59,12 @@ export default function UserProgressOverview() {
                   Student
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Joined
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Current Module
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Progress
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -94,6 +100,21 @@ export default function UserProgressOverview() {
                           <div className="text-sm text-gray-500">{user.email}</div>
                           <div className="text-xs text-gray-400 capitalize">{user.experienceLevel}</div>
                         </div>
+                      </div>
+                    </td>
+                    
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {new Date(user.enrolledDate).toLocaleDateString()}
+                    </td>
+                    
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center space-x-2">
+                        <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs font-medium">
+                          Module {user.progress.currentModule}
+                        </span>
+                      </div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        {user.progress.currentModuleTitle}
                       </div>
                     </td>
                     

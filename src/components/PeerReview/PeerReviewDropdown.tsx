@@ -121,22 +121,18 @@ export default function PeerReviewDropdown({ completedAssignments }: PeerReviewD
                                 </div>
                               </div>
                               
-                              <div className="flex items-center space-x-2">
+                              <div className="flex items-center">
                                 {canReview ? (
-                                  <>
-                                    <Link
-                                      href={`/peer-review/${assignment.assignmentId}`}
-                                      onClick={() => setIsOpen(false)}
-                                      className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition-colors"
-                                    >
-                                      Review
-                                    </Link>
-                                    <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium">
-                                      Available
-                                    </span>
-                                  </>
+                                  <Link
+                                    href={`/peer-review/${assignment.assignmentId}`}
+                                    onClick={() => setIsOpen(false)}
+                                    className="bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center space-x-1"
+                                  >
+                                    <span>✓</span>
+                                    <span>Review</span>
+                                  </Link>
                                 ) : (
-                                  <span className="bg-gray-200 text-gray-500 px-2 py-1 rounded-full text-xs font-medium">
+                                  <span className="bg-gray-200 text-gray-500 px-3 py-1.5 rounded-lg text-xs font-medium opacity-60">
                                     Locked
                                   </span>
                                 )}

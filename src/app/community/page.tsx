@@ -127,6 +127,26 @@ export default function CommunityPage() {
           </p>
         </div>
 
+        {/* Community Guidelines */}
+        <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 mb-8">
+          <div className="flex items-start space-x-3">
+            <div className="text-2xl">💜</div>
+            <div>
+              <h3 className="font-medium text-purple-900 mb-2">Community Guidelines</h3>
+              <p className="text-purple-700 text-sm leading-relaxed mb-3">
+                Our community thrives on kindness and constructive feedback. When reviewing your peers&apos; work, 
+                focus on <strong>tone quality</strong> and <strong>execution technique</strong> while maintaining a supportive and encouraging environment.
+              </p>
+              <ul className="text-purple-700 text-sm space-y-1">
+                <li>• <strong>Be Kind:</strong> Offer feedback with warmth and encouragement</li>
+                <li>• <strong>Focus on Technique:</strong> Comment on breathing, pitch accuracy, tone, and execution</li>
+                <li>• <strong>Be Specific:</strong> Provide actionable suggestions for improvement</li>
+                <li>• <strong>Celebrate Progress:</strong> Acknowledge effort and growth in every submission</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         {/* Tabs */}
         <div className="flex space-x-1 mb-8 bg-gray-100 p-1 rounded-lg w-fit">
           <button

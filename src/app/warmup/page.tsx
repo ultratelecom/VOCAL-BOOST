@@ -1,16 +1,19 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import AudioRecorder from '../../components/Audio/AudioRecorder'
 import NotificationDropdown from '../../components/Notifications/NotificationDropdown'
 import PeerReviewDropdown from '../../components/PeerReview/PeerReviewDropdown'
 
-export default function WarmupPage() {
+function WarmupContent() {
   const [currentExercise, setCurrentExercise] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
   const [completedExercises, setCompletedExercises] = useState<Set<number>>(new Set())
   const [completedAssignments] = useState<Set<string>>(new Set(['1a', '1b'])) // Mock completed assignments
+  const searchParams = useSearchParams()
+  const returnTo = searchParams.get('returnTo') // Track which assignment to return to
 
   const warmupExercises = [
     {
@@ -269,12 +272,21 @@ export default function WarmupPage() {
               You&apos;re prepared to tackle any vocal challenge that comes your way!
             </p>
             <div className="flex justify-center space-x-4">
-              <Link
-                href="/dashboard"
-                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-              >
-                Continue to Lessons
-              </Link>
+              {returnTo ? (
+                <Link
+                  href={`/assignment/${returnTo}`}
+                  className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                >
+                  Return to Assignment
+                </Link>
+              ) : (
+                <Link
+                  href="/dashboard"
+                  className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                >
+                  Continue to Lessons
+                </Link>
+              )}
               <button
                 onClick={() => setCompletedExercises(new Set())}
                 className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors"
@@ -300,5 +312,20 @@ export default function WarmupPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function WarmupPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-4xl mb-4">🎵</div>
+          <p className="text-gray-600">Loading warmup session...</p>
+        </div>
+      </div>
+    }>
+      <WarmupContent />
+    </Suspense>
   )
 } 
