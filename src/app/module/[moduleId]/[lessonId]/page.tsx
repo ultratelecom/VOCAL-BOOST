@@ -13,16 +13,16 @@ interface ModuleLessonPageProps {
 
 export default async function ModuleLessonPage({ params }: ModuleLessonPageProps) {
   const { moduleId, lessonId } = await params
-  const module = getModuleById(moduleId)
+  const courseModule = getModuleById(moduleId)
   const lesson = getLessonById(moduleId, lessonId)
   const nextLesson = getNextLesson(moduleId, lessonId)
 
-  if (!module || !lesson) {
+  if (!courseModule || !lesson) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-6">
           <h1 className="text-2xl font-medium text-gray-900 mb-4">Lesson not found</h1>
-          <p className="text-gray-600 mb-8">The lesson you're looking for doesn't exist.</p>
+          <p className="text-gray-600 mb-8">The lesson you&apos;re looking for doesn&apos;t exist.</p>
           <Link 
             href="/dashboard" 
             className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors"
@@ -63,12 +63,12 @@ export default async function ModuleLessonPage({ params }: ModuleLessonPageProps
         <div className="mb-8">
           <div className="flex items-center mb-4">
             <span className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium">
-              Module {module.module}
+              Module {courseModule.module}
             </span>
           </div>
           
           <h1 className="text-3xl font-light text-gray-900 mb-2">{lesson.title}</h1>
-          <p className="text-gray-600">{module.title}</p>
+          <p className="text-gray-600">{courseModule.title}</p>
         </div>
 
         {/* Lesson Content */}

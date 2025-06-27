@@ -230,8 +230,8 @@ export const mockCourses: Course[] = [
 
 export const getLessonById = (lessonId: string): Lesson | undefined => {
   for (const course of mockCourses) {
-    for (const module of course.modules) {
-      const lesson = module.lessons.find(l => l.id === lessonId);
+    for (const courseModule of course.modules) {
+      const lesson = courseModule.lessons.find(l => l.id === lessonId);
       if (lesson) return lesson;
     }
   }
@@ -240,8 +240,8 @@ export const getLessonById = (lessonId: string): Lesson | undefined => {
 
 export const getModuleById = (moduleId: string): Module | undefined => {
   for (const course of mockCourses) {
-    const module = course.modules.find(m => m.id === moduleId);
-    if (module) return module;
+    const courseModule = course.modules.find(m => m.id === moduleId);
+    if (courseModule) return courseModule;
   }
   return undefined;
 };
@@ -254,19 +254,19 @@ export const getNextLesson = (currentLessonId: string): Lesson | undefined => {
   const currentLesson = getLessonById(currentLessonId);
   if (!currentLesson) return undefined;
 
-  const module = getModuleById(currentLesson.moduleId);
-  if (!module) return undefined;
+  const courseModule = getModuleById(currentLesson.moduleId);
+  if (!courseModule) return undefined;
 
-  const currentIndex = module.lessons.findIndex(l => l.id === currentLessonId);
-  if (currentIndex < module.lessons.length - 1) {
-    return module.lessons[currentIndex + 1];
+  const currentIndex = courseModule.lessons.findIndex(l => l.id === currentLessonId);
+  if (currentIndex < courseModule.lessons.length - 1) {
+    return courseModule.lessons[currentIndex + 1];
   }
 
   // Look for next module's first lesson
-  const course = getCourseById(module.courseId);
+  const course = getCourseById(courseModule.courseId);
   if (!course) return undefined;
 
-  const moduleIndex = course.modules.findIndex(m => m.id === module.id);
+  const moduleIndex = course.modules.findIndex(m => m.id === courseModule.id);
   if (moduleIndex < course.modules.length - 1) {
     const nextModule = course.modules[moduleIndex + 1];
     return nextModule.lessons[0];

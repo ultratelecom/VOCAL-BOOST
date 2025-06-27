@@ -112,25 +112,25 @@ export const lessonFlow: ModuleFlow[] = [
 ];
 
 export const getModuleById = (moduleId: string): ModuleFlow | undefined => {
-  return lessonFlow.find(module => module.module === moduleId);
+  return lessonFlow.find(courseModule => courseModule.module === moduleId);
 };
 
 export const getLessonById = (moduleId: string, lessonId: string): LessonFlowItem | undefined => {
-  const module = getModuleById(moduleId);
-  return module?.lessons.find(lesson => lesson.id === lessonId);
+  const courseModule = getModuleById(moduleId);
+  return courseModule?.lessons.find(lesson => lesson.id === lessonId);
 };
 
 export const getNextLesson = (moduleId: string, lessonId: string): { moduleId: string; lessonId: string } | null => {
-  const module = getModuleById(moduleId);
-  if (!module) return null;
+  const courseModule = getModuleById(moduleId);
+  if (!courseModule) return null;
 
-  const currentIndex = module.lessons.findIndex(lesson => lesson.id === lessonId);
+  const currentIndex = courseModule.lessons.findIndex(lesson => lesson.id === lessonId);
   
   // Check if there's a next lesson in the same module
-  if (currentIndex < module.lessons.length - 1) {
+  if (currentIndex < courseModule.lessons.length - 1) {
     return {
       moduleId: moduleId,
-      lessonId: module.lessons[currentIndex + 1].id
+      lessonId: courseModule.lessons[currentIndex + 1].id
     };
   }
 
