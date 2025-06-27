@@ -1,0 +1,35 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# General Development Rule: Step-by-Step Thinking and Verification
+
+When coding or implementing features, always operate with the following guardrails:
+
+1. **Context Awareness**  
+   Before writing code, examine related files, project structure, and existing logic. Ensure that changes align with current components, routing, database schema, and dependencies.
+
+2. **Plan and Decompose Tasks**  
+   Break down the requested feature into clearly defined steps. Think in terms of what files to touch, what logic to add, and how the change flows through the app.
+
+3. **Implement Then Verify**  
+   After making a change, confirm that:
+   - Components are imported and rendered properly.
+   - State or context integrations are functional.
+   - API or DB operations (e.g. Supabase) reflect schema changes.
+   - The UI behaves visually and interactively as expected.
+
+4. **Check Output is Rendered**  
+   If a new component or logic is introduced, always validate it's visible and working in the UI. If not, investigate why and debug.
+
+5. **Avoid Scope Creep**  
+   Do not modify unrelated code unless required. Keep changes focused and minimal. Leave comments if any side effects are possible.
+
+6. **Leave Clues for Later**  
+   Add short comments or logs to explain new logic or decisions, making it easier for future AI actions to understand and build on the work.
+
+7. **Error and Warning Triggers**  
+   If verification fails (e.g. the component doesn’t render, data doesn’t match schema), halt and output a clear explanation and fix path. Never assume success without proof.
+
+This rule ensures a reliable, context-driven, and verifiable coding process that improves both quality and collaboration with the AI.

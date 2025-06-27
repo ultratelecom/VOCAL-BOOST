@@ -1,0 +1,13 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+This project uses:
+- Next.js (App Router, TypeScript)
+- TailwindCSS (no external CSS files)
+- Zustand for state management
+- Supabase.js for DB/auth
+- React Three Fiber + Drei for optional 3D elements
+- Framer Motion for animations
+Stick to this stack. Do not introduce additional libraries unless requested.

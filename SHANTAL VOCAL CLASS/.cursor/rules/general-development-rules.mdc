@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+- Keep code DRY, composable, and well-commented if logic is complex
+- Prefer serverless API routes via /app/api
+- For 3D or globe-based features, render within isolated canvas components using React Three Fiber
+- Use Zustand for any global state (auth, cart, chat, etc.)

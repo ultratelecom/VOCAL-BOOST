@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Keep all components in /components
+All shared utilities go into /lib
+All state logic lives in /store
+Pages and routes follow the App Router structure under /app
+Do not use legacy /pages routing

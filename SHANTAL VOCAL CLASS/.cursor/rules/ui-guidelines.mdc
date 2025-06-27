@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+- Use Tailwind exclusively for styling
+- Use shadcn/ui components when needing UI primitives
+- Animations default to Framer Motion (no GSAP or other libraries)
+- Keep the UI minimal, mobile-first, responsive

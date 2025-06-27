@@ -1,0 +1,7 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+If user experience requires AI (e.g., summaries, smart responses), use OpenAI or DeepSeek for text, and optionally integrate image tools like Bannerbear or Placid for social graphics
+Treat AI summaries as human-first, vibe-based, and contextual to Tobago

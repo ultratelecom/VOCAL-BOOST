@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Use the Supabase JS client via /lib/supabase.ts
+Assume Row-Level Security is disabled during dev
+Always wrap DB calls with error handling
+Auto-generate DB schema if field does not exist and we are in dev mode
