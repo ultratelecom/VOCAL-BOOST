@@ -4,23 +4,22 @@ import { useState } from 'react';
 
 interface PeerSubmission {
   id: string;
-  userId: string;
-  userName: string;
-  userAvatar?: string;
+  studentName: string;
+  studentAvatar?: string;
   lessonTitle: string;
-  projectTitle: string;
-  submittedAt: string;
+  lessonType: 'breathing' | 'pitch' | 'tone' | 'rhythm';
   audioUrl: string;
-  duration: number;
-  notes?: string;
-  averageRating?: number;
-  reviewCount: number;
-  hasUserReviewed: boolean;
+  duration: number; // in seconds
+  submittedAt: string;
+  description: string;
+  reviewsCount: number;
+  isReviewedByCurrentUser: boolean;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
 }
 
 interface PeerSubmissionCardProps {
   submission: PeerSubmission;
-  onReview: (submissionId: string, rating: number, feedback: string) => void;
+  onReview?: (submissionId: string, rating: number, feedback: string) => void;
 }
 
 export default function PeerSubmissionCard({ submission, onReview }: PeerSubmissionCardProps) {
@@ -52,6 +51,11 @@ export default function PeerSubmissionCard({ submission, onReview }: PeerSubmiss
   const handleReviewSubmit = async () => {
     if (rating === 0 || !feedback.trim()) {
       alert('Please provide both a rating and feedback');
+      return;
+    }
+
+    if (!onReview) {
+      alert('Review functionality not available');
       return;
     }
 
@@ -92,23 +96,23 @@ export default function PeerSubmissionCard({ submission, onReview }: PeerSubmiss
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center space-x-3">
             <img
-              src={submission.userAvatar || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'}
-              alt={submission.userName}
+              src={submission.studentAvatar || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'}
+              alt={submission.studentName}
               className="w-12 h-12 rounded-full"
             />
             <div>
-              <h3 className="font-semibold text-gray-900">{submission.userName}</h3>
-              <p className="text-sm text-gray-600">{submission.projectTitle}</p>
+              <h3 className="font-semibold text-gray-900">{submission.studentName}</h3>
+              <p className="text-sm text-gray-600">{submission.lessonTitle}</p>
               <p className="text-xs text-gray-500">{formatDate(submission.submittedAt)}</p>
             </div>
           </div>
           
           <div className="text-right">
-            {submission.averageRating && (
+            {submission.reviewsCount > 0 && (
               <div className="flex items-center space-x-1 mb-1">
                 <span className="text-yellow-400">⭐</span>
-                <span className="text-sm font-medium">{submission.averageRating.toFixed(1)}</span>
-                <span className="text-xs text-gray-500">({submission.reviewCount} reviews)</span>
+                <span className="text-sm font-medium">4.2</span>
+                <span className="text-xs text-gray-500">({submission.reviewsCount} reviews)</span>
               </div>
             )}
             <div className="text-xs text-gray-500">
@@ -122,9 +126,9 @@ export default function PeerSubmissionCard({ submission, onReview }: PeerSubmiss
           <p className="text-sm text-gray-700">
             <span className="font-medium">Lesson:</span> {submission.lessonTitle}
           </p>
-          {submission.notes && (
+          {submission.description && (
             <p className="text-sm text-gray-600 mt-1">
-              <span className="font-medium">Notes:</span> {submission.notes}
+              <span className="font-medium">Notes:</span> {submission.description}
             </p>
           )}
         </div>
@@ -149,7 +153,7 @@ export default function PeerSubmissionCard({ submission, onReview }: PeerSubmiss
             {isExpanded ? 'Show Less' : 'Show More'}
           </button>
           
-          {!submission.hasUserReviewed && (
+          {!submission.isReviewedByCurrentUser && (
             <button
               onClick={() => setIsReviewing(!isReviewing)}
               className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors text-sm"
@@ -158,7 +162,7 @@ export default function PeerSubmissionCard({ submission, onReview }: PeerSubmiss
             </button>
           )}
           
-          {submission.hasUserReviewed && (
+          {submission.isReviewedByCurrentUser && (
             <span className="text-green-600 text-sm font-medium">
                               ✓ You&apos;ve reviewed this
             </span>
