@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import Link from 'next/link'
 import { getPeerSubmissions } from '../../../lib/mockPeerReviewData'
@@ -7,13 +5,13 @@ import { getAssignmentById } from '../../../lib/assignmentsData'
 import PeerReviewGrid from '../../../components/PeerGrid/PeerReviewGrid'
 
 interface PeerReviewPageProps {
-  params: {
+  params: Promise<{
     assignmentId: string
-  }
+  }>
 }
 
-export default function PeerReviewPage({ params }: PeerReviewPageProps) {
-  const assignmentId = params.assignmentId
+export default async function PeerReviewPage({ params }: PeerReviewPageProps) {
+  const { assignmentId } = await params
   const assignment = getAssignmentById(assignmentId)
   const peerSubmissions = getPeerSubmissions(assignmentId)
 

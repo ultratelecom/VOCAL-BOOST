@@ -1,17 +1,16 @@
-'use client'
-
 import React from 'react'
 import { mockCourses, getLessonById } from '../../../lib/courseStructure'
 import Link from 'next/link'
 
 interface LessonPageProps {
-  params: {
+  params: Promise<{
     lessonId: string
-  }
+  }>
 }
 
-export default function LessonPage({ params }: LessonPageProps) {
-  const lesson = getLessonById(params.lessonId)
+export default async function LessonPage({ params }: LessonPageProps) {
+  const { lessonId } = await params
+  const lesson = getLessonById(lessonId)
 
   if (!lesson) {
     return (
