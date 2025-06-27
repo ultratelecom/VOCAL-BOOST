@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { mockCurrentUser } from '../../lib/mockUser'
 import { getAllModules } from '../../lib/lessonFlow'
+import NotificationDropdown from '../../components/Notifications/NotificationDropdown'
+import PeerReviewDropdown from '../../components/PeerReview/PeerReviewDropdown'
 
 export default function DashboardPage() {
   const user = mockCurrentUser
@@ -90,6 +92,8 @@ export default function DashboardPage() {
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-600">Welcome, {firstName}</span>
+              <PeerReviewDropdown completedAssignments={completedAssignments} />
+              <NotificationDropdown />
               <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
                 <span className="text-white text-sm font-medium">{firstName[0]}</span>
               </div>
@@ -266,12 +270,12 @@ export default function DashboardPage() {
             </Link>
             
             <Link
-              href="/peer"
+              href="/community"
               className="bg-white border border-gray-200 p-6 rounded-lg hover:bg-gray-50 transition-colors group"
             >
-              <div className="text-2xl mb-3">👥</div>
-              <h3 className="font-medium mb-1 text-gray-900">Peer Review</h3>
-              <p className="text-sm text-gray-600">Give feedback to classmates</p>
+              <div className="text-2xl mb-3">💬</div>
+              <h3 className="font-medium mb-1 text-gray-900">Community</h3>
+              <p className="text-sm text-gray-600">Share and get feedback from others</p>
             </Link>
             
             <Link

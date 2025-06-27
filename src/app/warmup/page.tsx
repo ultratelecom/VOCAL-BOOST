@@ -3,11 +3,14 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import AudioRecorder from '../../components/Audio/AudioRecorder'
+import NotificationDropdown from '../../components/Notifications/NotificationDropdown'
+import PeerReviewDropdown from '../../components/PeerReview/PeerReviewDropdown'
 
 export default function WarmupPage() {
   const [currentExercise, setCurrentExercise] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
   const [completedExercises, setCompletedExercises] = useState<Set<number>>(new Set())
+  const [completedAssignments] = useState<Set<string>>(new Set(['1a', '1b'])) // Mock completed assignments
 
   const warmupExercises = [
     {
@@ -113,6 +116,11 @@ export default function WarmupPage() {
             >
               Back to dashboard
             </Link>
+            <PeerReviewDropdown completedAssignments={completedAssignments} />
+            <NotificationDropdown />
+            <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+              <span className="text-white text-sm font-medium">A</span>
+            </div>
           </div>
         </div>
       </header>

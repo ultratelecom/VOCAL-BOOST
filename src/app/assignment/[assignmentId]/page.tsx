@@ -1,17 +1,18 @@
-import React from 'react'
+'use client'
+
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 import { assignments, getAssignmentById } from '../../../lib/assignmentsData'
 import AssignmentUpload from '../../../components/Assignment/AssignmentUpload'
+import NotificationDropdown from '../../../components/Notifications/NotificationDropdown'
+import PeerReviewDropdown from '../../../components/PeerReview/PeerReviewDropdown'
 
-interface AssignmentPageProps {
-  params: Promise<{
-    assignmentId: string
-  }>
-}
-
-export default async function AssignmentPage({ params }: AssignmentPageProps) {
-  const { assignmentId } = await params
+export default function AssignmentPage() {
+  const params = useParams()
+  const assignmentId = params.assignmentId as string
   const assignment = getAssignmentById(assignmentId)
+  const [completedAssignments] = useState<Set<string>>(new Set(['1a', '1b'])) // Mock completed assignments
 
   if (!assignment) {
     return (
@@ -51,6 +52,8 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
               >
                 Back to dashboard
               </Link>
+              <PeerReviewDropdown completedAssignments={completedAssignments} />
+              <NotificationDropdown />
               <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
                 <span className="text-white text-sm font-medium">A</span>
               </div>
