@@ -6,6 +6,7 @@ import { mockCurrentUser } from '../../lib/mockUser'
 import { getAllModules } from '../../lib/lessonFlow'
 import NotificationDropdown from '../../components/Notifications/NotificationDropdown'
 import PeerReviewDropdown from '../../components/PeerReview/PeerReviewDropdown'
+import ParticleBackground from '../../components/ParticleBackground'
 
 export default function DashboardPage() {
   const user = mockCurrentUser
@@ -47,7 +48,8 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen relative overflow-hidden">
+      <ParticleBackground />
       {/* Confetti Effect */}
       {showConfetti && (
         <div className="fixed inset-0 pointer-events-none z-50">
@@ -78,24 +80,37 @@ export default function DashboardPage() {
         </div>
       )}
 
-      {/* Header */}
-      <header className="border-b border-gray-200 bg-white">
+      {/* Enhanced Glass Header */}
+      <header className="nav-glass relative z-10">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 logo-glow rounded-lg flex items-center justify-center float">
                 <span className="text-white font-bold text-sm">🎵</span>
               </div>
-              <Link href="/" className="text-2xl font-semibold text-gray-900">
-                Vocal Boost
-              </Link>
+              <div className="flex flex-col">
+                <Link href="/" className="text-2xl font-semibold text-white glow-hover">
+                  Vocal Boost
+                </Link>
+                <div className="waveform" style={{ transform: 'scale(0.7)', transformOrigin: 'left' }}>
+                  <div className="waveform-bar"></div>
+                  <div className="waveform-bar"></div>
+                  <div className="waveform-bar"></div>
+                  <div className="waveform-bar"></div>
+                  <div className="waveform-bar"></div>
+                </div>
+              </div>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">Welcome, {firstName}</span>
-              <PeerReviewDropdown completedAssignments={completedAssignments} />
-              <NotificationDropdown />
+              <span className="text-sm text-white/80 glass px-3 py-1 rounded-full">Welcome, {firstName} 👋</span>
+              <div className="glow-hover">
+                <PeerReviewDropdown completedAssignments={completedAssignments} />
+              </div>
+              <div className="glow-hover">
+                <NotificationDropdown />
+              </div>
               <Link href="/profile">
-                <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors cursor-pointer">
+                <div className="w-8 h-8 logo-glow rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-110">
                   <span className="text-white text-sm font-medium">{firstName[0]}</span>
                 </div>
               </Link>
@@ -104,73 +119,102 @@ export default function DashboardPage() {
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto px-6 py-8">
-        {/* Progress Overview */}
+      <div className="max-w-6xl mx-auto px-6 py-8 relative z-10">
+        {/* Enhanced Progress Overview */}
         <div className="mb-12">
-          <h1 className="text-3xl font-light text-gray-900 mb-2">Welcome to Shantal&apos;s Vocal Class</h1>
-          <p className="text-gray-600 mb-8">Continue building your vocal skills through structured modules</p>
+          <div className="glass-card text-center mb-8">
+            <h1 className="text-4xl font-light text-white mb-3">Welcome to Shantal&apos;s Vocal Class</h1>
+            <p className="text-white/80 text-lg">Continue building your vocal skills through structured modules</p>
+            <div className="waveform mt-4">
+              <div className="waveform-bar"></div>
+              <div className="waveform-bar"></div>
+              <div className="waveform-bar"></div>
+              <div className="waveform-bar"></div>
+              <div className="waveform-bar"></div>
+            </div>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <div className="glass-card glow-hover ripple float">
               <div className="flex items-center justify-between">
-                <h3 className="font-medium text-gray-900">Completed</h3>
-                <span className="text-2xl font-light text-purple-600">{user.progress.lessonsCompleted}</span>
+                <h3 className="font-medium text-white">Completed</h3>
+                <span className="text-3xl font-light text-purple-300">{user.progress.lessonsCompleted}</span>
               </div>
-              <p className="text-sm text-gray-600 mt-1">Lessons finished</p>
+              <p className="text-sm text-white/70 mt-1">Lessons finished</p>
+              <div className="mt-3 w-full bg-white/20 rounded-full h-2">
+                <div className="bg-gradient-to-r from-purple-400 to-pink-400 h-2 rounded-full" style={{ width: '75%' }}></div>
+              </div>
             </div>
             
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <div className="glass-card glow-hover ripple float" style={{ animationDelay: '0.3s' }}>
               <div className="flex items-center justify-between">
-                <h3 className="font-medium text-gray-900">Streak</h3>
-                <span className="text-2xl font-light text-orange-500">{user.progress.currentStreak}</span>
+                <h3 className="font-medium text-white">Streak</h3>
+                <span className="text-3xl font-light text-orange-300">{user.progress.currentStreak}</span>
               </div>
-              <p className="text-sm text-gray-600 mt-1">Days practicing</p>
+              <p className="text-sm text-white/70 mt-1">Days practicing</p>
+              <div className="mt-3 flex space-x-1">
+                {[...Array(7)].map((_, i) => (
+                  <div key={i} className={`w-3 h-3 rounded-full ${i < user.progress.currentStreak ? 'bg-orange-400' : 'bg-white/20'}`}></div>
+                ))}
+              </div>
             </div>
             
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <div className="glass-card glow-hover ripple float" style={{ animationDelay: '0.6s' }}>
               <div className="flex items-center justify-between">
-                <h3 className="font-medium text-gray-900">Practice Time</h3>
-                <span className="text-2xl font-light text-green-500">{user.progress.totalPracticeHours}h</span>
+                <h3 className="font-medium text-white">Practice Time</h3>
+                <span className="text-3xl font-light text-green-300">{user.progress.totalPracticeHours}h</span>
               </div>
-              <p className="text-sm text-gray-600 mt-1">Total hours</p>
+              <p className="text-sm text-white/70 mt-1">Total hours</p>
+              <div className="mt-3 w-full bg-white/20 rounded-full h-2">
+                <div className="bg-gradient-to-r from-green-400 to-emerald-400 h-2 rounded-full" style={{ width: '60%' }}></div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Course Modules with Accordion */}
+        {/* Enhanced Course Modules with Accordion */}
         <div className="mb-12">
-          <h2 className="text-xl font-medium text-gray-900 mb-6">Course Modules</h2>
+          <div className="glass-card mb-6 text-center">
+            <h2 className="text-2xl font-medium text-white mb-2">Course Modules</h2>
+            <div className="waveform">
+              <div className="waveform-bar"></div>
+              <div className="waveform-bar"></div>
+              <div className="waveform-bar"></div>
+              <div className="waveform-bar"></div>
+              <div className="waveform-bar"></div>
+            </div>
+          </div>
           <div className="space-y-4">
             {modules.map((moduleItem) => {
               const isCompleted = isModuleCompleted(moduleItem)
               const isExpanded = expandedModules.has(moduleItem.module)
               
               return (
-                <div key={moduleItem.module} className="bg-white border border-gray-200 rounded-lg overflow-hidden relative">
+                <div key={moduleItem.module} className="glass-card glow-hover overflow-hidden relative">
                   {/* Module Header */}
                   <div 
-                    className={`p-6 cursor-pointer transition-colors ${isCompleted ? 'bg-green-50 border-green-200' : ''}`}
+                    className={`p-6 cursor-pointer transition-all duration-300 ${isCompleted ? 'bg-green-500/20' : ''} hover:bg-white/10`}
                     onClick={() => toggleModule(moduleItem.module)}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
-                        <button className="text-gray-500 hover:text-gray-700">
+                        <button className="text-white/70 hover:text-white transition-colors glow-hover p-2 rounded-lg">
                           {isExpanded ? '▼' : '▶'}
                         </button>
                         <div>
-                          <h3 className={`text-lg font-medium ${isCompleted ? 'text-green-700' : 'text-gray-900'}`}>
+                          <h3 className={`text-lg font-medium ${isCompleted ? 'text-green-300' : 'text-white'}`}>
                             Module {moduleItem.module}: {moduleItem.title}
                           </h3>
-                          <p className="text-sm text-gray-600">{moduleItem.lessons.length} lessons</p>
+                          <p className="text-sm text-white/70">{moduleItem.lessons.length} lessons</p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-3">
                         {isCompleted ? (
-                          <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                          <span className="status-completed">
                             ✓ COMPLETED
                           </span>
                         ) : (
-                          <span className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium">
+                          <span className="glass px-3 py-1 rounded-full text-sm font-medium text-white">
                             Module {moduleItem.module}
                           </span>
                         )}
@@ -189,35 +233,35 @@ export default function DashboardPage() {
                             <div key={lesson.id} className="relative">
                               <Link
                                 href={`/module/${moduleItem.module}/${lesson.id}`}
-                                className="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors group"
+                                className="block p-4 glass rounded-lg hover:bg-white/20 transition-all duration-300 group glow-hover ripple"
                               >
                                 <div className="flex items-center space-x-3">
-                                  <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                                  <div className={`w-8 h-8 rounded-full flex items-center justify-center float ${
                                     lesson.type === 'intro' 
-                                      ? 'bg-blue-100 text-blue-600' 
-                                      : 'bg-orange-100 text-orange-600'
+                                      ? 'bg-blue-500/80 text-blue-100' 
+                                      : 'bg-orange-500/80 text-orange-100'
                                   }`}>
                                     <span className="text-sm">
                                       {lesson.type === 'intro' ? '📖' : '📝'}
                                     </span>
                                   </div>
                                   <div className="flex-1">
-                                    <p className="font-medium text-gray-900 text-sm group-hover:text-purple-600 transition-colors">
+                                    <p className="font-medium text-white text-sm group-hover:text-purple-300 transition-colors">
                                       {lesson.title}
                                     </p>
-                                    <p className="text-xs text-gray-500 capitalize">
+                                    <p className="text-xs text-white/70 capitalize">
                                       {lesson.type}
                                     </p>
                                   </div>
                                 </div>
                               </Link>
                               
-                              {/* Status Tab */}
+                              {/* Enhanced Status Tab */}
                               {status && (
                                 <div className={`absolute -right-1 top-2 px-2 py-1 text-xs font-bold rounded-l-md ${
                                   status === 'COMPLETED' 
-                                    ? 'bg-green-500 text-white' 
-                                    : 'bg-red-500 text-white animate-pulse'
+                                    ? 'status-completed' 
+                                    : 'status-pending'
                                 }`}>
                                   {status}
                                 </div>
@@ -227,7 +271,7 @@ export default function DashboardPage() {
                         })}
                       </div>
                       
-                      {/* Completion Celebration Button */}
+                      {/* Enhanced Completion Celebration Button */}
                       {isCompleted && (
                         <div className="mt-4 text-center">
                           <button
@@ -235,7 +279,7 @@ export default function DashboardPage() {
                               e.stopPropagation()
                               celebrateCompletion(moduleItem.module)
                             }}
-                            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                            className="btn-glass ripple"
                           >
                             🎉 Celebrate Progress!
                           </button>
@@ -249,44 +293,57 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Quick Actions */}
+        {/* Enhanced Quick Actions */}
         <div className="mb-12">
-          <h2 className="text-xl font-medium text-gray-900 mb-6">Quick Actions</h2>
+          <div className="glass-card mb-6 text-center">
+            <h2 className="text-2xl font-medium text-white mb-2">Quick Actions</h2>
+            <div className="waveform">
+              <div className="waveform-bar"></div>
+              <div className="waveform-bar"></div>
+              <div className="waveform-bar"></div>
+              <div className="waveform-bar"></div>
+              <div className="waveform-bar"></div>
+            </div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Link
               href="/warmup"
-              className="bg-purple-600 text-white p-6 rounded-lg hover:bg-purple-700 transition-colors group"
+              className="glass-card glow-hover ripple group float"
+              style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.6), rgba(236, 72, 153, 0.6))' }}
             >
-              <div className="text-2xl mb-3">🎵</div>
-              <h3 className="font-medium mb-1">Start Warmup</h3>
-              <p className="text-sm text-purple-100">Essential vocal warmup exercises</p>
+              <div className="text-3xl mb-3 float">🎵</div>
+              <h3 className="font-medium mb-1 text-white">Start Warmup</h3>
+              <p className="text-sm text-white/80">Essential vocal warmup exercises</p>
             </Link>
             
             <Link
               href="/assignment/1a"
-              className="bg-white border border-gray-200 p-6 rounded-lg hover:bg-gray-50 transition-colors group"
+              className="glass-card glow-hover ripple group float"
+              style={{ animationDelay: '0.2s' }}
             >
-              <div className="text-2xl mb-3">📝</div>
-              <h3 className="font-medium mb-1 text-gray-900">Assignments</h3>
-              <p className="text-sm text-gray-600">Submit your latest work</p>
+              <div className="text-3xl mb-3 float">📝</div>
+              <h3 className="font-medium mb-1 text-white">Assignments</h3>
+              <p className="text-sm text-white/80">Submit your latest work</p>
             </Link>
             
             <Link
               href="/community"
-              className="bg-white border border-gray-200 p-6 rounded-lg hover:bg-gray-50 transition-colors group"
+              className="glass-card glow-hover ripple group float"
+              style={{ animationDelay: '0.4s' }}
             >
-              <div className="text-2xl mb-3">💬</div>
-              <h3 className="font-medium mb-1 text-gray-900">Community</h3>
-              <p className="text-sm text-gray-600">Share and get feedback from others</p>
+              <div className="text-3xl mb-3 float">💬</div>
+              <h3 className="font-medium mb-1 text-white">Community</h3>
+              <p className="text-sm text-white/80">Share and get feedback from others</p>
             </Link>
             
             <Link
               href="/admin"
-              className="bg-white border border-gray-200 p-6 rounded-lg hover:bg-gray-50 transition-colors group"
+              className="glass-card glow-hover ripple group float"
+              style={{ animationDelay: '0.6s' }}
             >
-              <div className="text-2xl mb-3">📊</div>
-              <h3 className="font-medium mb-1 text-gray-900">Admin</h3>
-              <p className="text-sm text-gray-600">View detailed analytics</p>
+              <div className="text-3xl mb-3 float">📊</div>
+              <h3 className="font-medium mb-1 text-white">Admin</h3>
+              <p className="text-sm text-white/80">View detailed analytics</p>
             </Link>
           </div>
         </div>
