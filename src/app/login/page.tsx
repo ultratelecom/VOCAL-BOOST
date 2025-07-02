@@ -3,31 +3,30 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/auth';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { signIn, isLoading } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    setError('');
 
-    // Mock authentication
-    setTimeout(() => {
-      if (email === 'demo@vocaltraining.com' && password === 'password123') {
-        router.push('/dashboard');
-      } else {
-        alert('Invalid credentials. Use demo credentials: demo@vocaltraining.com / password123');
-      }
-      setIsLoading(false);
-    }, 1000);
+    try {
+      await signIn(email, password);
+      router.push('/dashboard');
+    } catch (err: any) {
+      setError(err.message || 'Login failed. Please check your credentials.');
+    }
   };
 
   const fillDemoCredentials = () => {
-    setEmail('demo@vocaltraining.com');
-    setPassword('password123');
+    setEmail('demo@vocalboost.com');
+    setPassword('demo123');
   };
 
   return (
@@ -63,6 +62,12 @@ export default function LoginPage() {
             </div>
 
             <form className="space-y-4" onSubmit={handleSubmit}>
+              {error && (
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm">
+                  {error}
+                </div>
+              )}
+              
               <div>
                 <input
                   id="email"

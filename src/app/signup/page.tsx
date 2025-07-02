@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/auth';
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -11,7 +12,9 @@ export default function SignupPage() {
     password: '',
     confirmPassword: ''
   });
-  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const { signUp, isLoading } = useAuth();
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,21 +26,31 @@ export default function SignupPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    setError('');
+    setSuccess('');
 
     // Basic validation
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match');
-      setIsLoading(false);
+      setError('Passwords do not match');
       return;
     }
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Redirect to dashboard on successful signup
-    router.push('/dashboard');
-    setIsLoading(false);
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      return;
+    }
+
+    try {
+      await signUp(formData.email, formData.password, formData.name);
+      setSuccess('Account created successfully! Please check your email to verify your account.');
+      
+      // Redirect to login after a delay
+      setTimeout(() => {
+        router.push('/login');
+      }, 3000);
+    } catch (err: any) {
+      setError(err.message || 'Signup failed. Please try again.');
+    }
   };
 
   return (
@@ -45,11 +58,23 @@ export default function SignupPage() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow-sm border border-gray-200 sm:rounded-lg sm:px-10">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-light text-gray-900 mb-2">VocalTraining</h1>
+            <h1 className="text-3xl font-light text-gray-900 mb-2">Vocal Boost</h1>
             <p className="text-gray-600 text-sm">Sign up to get started</p>
           </div>
 
           <form className="space-y-4" onSubmit={handleSubmit}>
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm">
+                {error}
+              </div>
+            )}
+            
+            {success && (
+              <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-md text-sm">
+                {success}
+              </div>
+            )}
+            
             <div>
               <input
                 id="name"
