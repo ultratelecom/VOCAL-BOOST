@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { mockNotifications, markNotificationAsRead, getNotificationIcon } from '../../lib/mockNotifications'
 import NotificationDropdown from '../../components/Notifications/NotificationDropdown'
 import PeerReviewDropdown from '../../components/PeerReview/PeerReviewDropdown'
+import HashtagBackground from '../../components/HashtagBackground'
 
 export default function NotificationsPage() {
   const [notifications, setNotifications] = useState(mockNotifications)
@@ -45,9 +46,12 @@ export default function NotificationsPage() {
   const unreadCount = notifications.filter(n => !n.isRead).length
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
+      {/* Animated Hashtag Background */}
+      <HashtagBackground />
+      
       {/* Header */}
-      <header className="border-b border-gray-200 bg-white">
+      <header className="border-b border-gray-200 bg-white relative z-10">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-3">
@@ -75,7 +79,7 @@ export default function NotificationsPage() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      <div className="max-w-4xl mx-auto px-6 py-8 relative z-10">
         {/* Page Header */}
         <div className="mb-8">
           <div className="flex items-center space-x-3 mb-2">

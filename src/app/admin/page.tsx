@@ -3,12 +3,16 @@
 import React from 'react'
 import Link from 'next/link'
 import AdminDashboard from '../../components/Admin/AdminDashboard'
+import HashtagBackground from '../../components/HashtagBackground'
 
 export default function AdminPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
+      {/* Animated Hashtag Background */}
+      <HashtagBackground />
+      
       {/* Clean Header */}
-      <header className="border-b border-gray-200 bg-white">
+      <header className="border-b border-gray-200 bg-white relative z-10">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <Link href="/dashboard" className="text-2xl font-semibold text-gray-900">
@@ -30,7 +34,7 @@ export default function AdminPage() {
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto px-6 py-8">
+      <div className="max-w-6xl mx-auto px-6 py-8 relative z-10">
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-light text-gray-900 mb-2">Admin Dashboard</h1>

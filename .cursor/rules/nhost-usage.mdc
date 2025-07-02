@@ -3,3 +3,9 @@ description:
 globs:
 alwaysApply: false
 ---
+Use the Nhost client via /lib/nhost.ts for authentication and GraphQL operations
+All database operations use GraphQL through the Nhost client
+Use @nhost/nextjs hooks for authentication state management
+Always wrap API calls with proper error handling
+All GraphQL operations are defined in /lib/graphql.ts
+Use Hasura auto-generated schema with proper permissions in production

@@ -25,7 +25,7 @@ export const lessonFlow: ModuleFlow[] = [
       },
       {
         id: "1a",
-        title: "Sharing Your Voice and Story",
+        title: "Sharing Your Voice & Story",
         type: "assignment",
         assignmentId: "1a"
       },

@@ -10,7 +10,7 @@ export const assignments: Assignment[] = [
   {
     id: "1a",
     module: "1",
-    title: "Sharing Your Voice and Story",
+    title: "Sharing Your Voice & Story",
     description: "Introduce yourself via text or video, share your vocal journey, and sing a small section of a song you love. This is your ice-breaker to open up to the process.",
     uploadType: ["audio", "video", "text"]
   },

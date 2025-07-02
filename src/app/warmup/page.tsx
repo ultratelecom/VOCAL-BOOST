@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import AudioRecorder from '../../components/Audio/AudioRecorder'
 import NotificationDropdown from '../../components/Notifications/NotificationDropdown'
 import PeerReviewDropdown from '../../components/PeerReview/PeerReviewDropdown'
+import HashtagBackground from '../../components/HashtagBackground'
 
 function WarmupContent() {
   const [currentExercise, setCurrentExercise] = useState(0)
@@ -100,9 +101,12 @@ function WarmupContent() {
   const allExercisesCompleted = completedExercises.size === warmupExercises.length
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
+      {/* Animated Hashtag Background */}
+      <HashtagBackground />
+      
       {/* Header */}
-      <header className="border-b border-gray-200 bg-white">
+      <header className="border-b border-gray-200 bg-white relative z-10">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-3">
@@ -128,7 +132,7 @@ function WarmupContent() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      <div className="max-w-4xl mx-auto px-6 py-8 relative z-10">
         {/* Page Header */}
         <div className="text-center mb-12">
           <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">

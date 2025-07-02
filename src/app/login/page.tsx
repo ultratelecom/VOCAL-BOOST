@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth';
-import ParticleBackground from '@/components/ParticleBackground';
+import HashtagBackground from '../../components/HashtagBackground';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -16,6 +16,13 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    // Check for demo credentials first
+    if (email === 'test@vocalboost.com' && password === 'password123') {
+      // Demo login - bypass Nhost
+      router.push('/dashboard');
+      return;
+    }
 
     try {
       await signIn(email, password);
@@ -31,60 +38,43 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <ParticleBackground />
-      {/* Glassmorphism Header */}
-      <header className="nav-glass relative z-10">
+    <div className="min-h-screen bg-white relative">
+      {/* Animated Hashtag Background */}
+      <HashtagBackground />
+      
+      {/* Header */}
+      <header className="border-b border-gray-200 bg-white relative z-10">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 logo-glow rounded-lg flex items-center justify-center float">
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">🎵</span>
               </div>
-              <div className="flex flex-col">
-                <Link href="/" className="text-2xl font-semibold text-white glow-hover">
-                  Vocal Boost
-                </Link>
-                <div className="waveform" style={{ transform: 'scale(0.7)', transformOrigin: 'left' }}>
-                  <div className="waveform-bar"></div>
-                  <div className="waveform-bar"></div>
-                  <div className="waveform-bar"></div>
-                  <div className="waveform-bar"></div>
-                  <div className="waveform-bar"></div>
-                </div>
-              </div>
+              <Link href="/" className="text-2xl font-semibold text-gray-900">
+                Vocal Boost
+              </Link>
             </div>
             <Link 
               href="/" 
-              className="text-white/80 hover:text-white text-sm transition-all duration-300 glow-hover px-3 py-1 rounded-lg"
+              className="text-gray-600 hover:text-gray-900 text-sm transition-colors"
             >
-              ← Back to home
+              Back to home
             </Link>
           </div>
         </div>
       </header>
 
-      <div className="min-h-screen flex flex-col justify-center relative z-10">
+      <div className="min-h-screen bg-white flex flex-col justify-center relative z-10">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="glass-card glow-hover">
+          <div className="bg-white py-8 px-4 shadow-sm border border-gray-200 sm:rounded-lg sm:px-10">
             <div className="text-center mb-8">
-              <div className="w-16 h-16 logo-glow rounded-2xl flex items-center justify-center mx-auto mb-4 float">
-                <span className="text-white font-bold text-2xl">🎵</span>
-              </div>
-              <h1 className="text-3xl font-light text-white mb-2">Vocal Boost</h1>
-              <p className="text-white/80 text-sm">Sign in to your account</p>
-              <div className="waveform mt-3">
-                <div className="waveform-bar"></div>
-                <div className="waveform-bar"></div>
-                <div className="waveform-bar"></div>
-                <div className="waveform-bar"></div>
-                <div className="waveform-bar"></div>
-              </div>
+              <h1 className="text-3xl font-light text-gray-900 mb-2">Vocal Boost</h1>
+              <p className="text-gray-600 text-sm">Sign in to your account</p>
             </div>
 
             <form className="space-y-4" onSubmit={handleSubmit}>
               {error && (
-                <div className="glass bg-red-500/20 border border-red-400/30 text-red-100 px-4 py-3 rounded-md text-sm">
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm">
                   {error}
                 </div>
               )}
@@ -99,7 +89,7 @@ export default function LoginPage() {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-3 py-3 glass rounded-md text-sm placeholder-white/50 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 glow-hover"
+                  className="w-full px-3 py-3 border border-gray-300 rounded-md text-sm placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-purple-600 focus:border-purple-600"
                 />
               </div>
 
@@ -113,7 +103,7 @@ export default function LoginPage() {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-3 py-3 glass rounded-md text-sm placeholder-white/50 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 glow-hover"
+                  className="w-full px-3 py-3 border border-gray-300 rounded-md text-sm placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-purple-600 focus:border-purple-600"
                 />
               </div>
 
@@ -121,9 +111,9 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="btn-glass w-full ripple"
+                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                  {isLoading ? '🎵 Signing in...' : '🎤 Sign in'}
+                  {isLoading ? 'Signing in...' : 'Sign in'}
                 </button>
               </div>
             </form>
@@ -131,31 +121,31 @@ export default function LoginPage() {
             <div className="mt-6">
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-white/20" />
+                  <div className="w-full border-t border-gray-300" />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 glass text-white/80">OR</span>
+                  <span className="px-2 bg-white text-gray-500">OR</span>
                 </div>
               </div>
 
-              <div className="mt-6 text-center space-y-3">
+              <div className="mt-6 text-center">
                 <button
                   onClick={fillDemoCredentials}
-                  className="glass px-4 py-2 rounded-lg text-white hover:text-purple-300 text-sm font-medium transition-all duration-300 glow-hover ripple"
+                  className="text-purple-600 hover:text-purple-700 text-sm font-medium transition-colors"
                 >
-                  🎭 Use demo credentials
+                  Use demo credentials
                 </button>
                 
-                <div className="text-xs text-white/60">
+                <div className="text-xs text-gray-500 mt-2">
                   Demo: test@vocalboost.com / password123
                 </div>
               </div>
             </div>
 
             <div className="mt-6 text-center">
-              <p className="text-sm text-white/80">
+              <p className="text-sm text-gray-600">
                 Don&apos;t have an account?{' '}
-                <Link href="/signup" className="text-purple-300 hover:text-purple-100 font-medium transition-colors glow-hover">
+                <Link href="/signup" className="text-purple-600 hover:text-purple-700 font-medium transition-colors">
                   Sign up
                 </Link>
               </p>
@@ -165,7 +155,7 @@ export default function LoginPage() {
           <div className="mt-8 text-center">
             <Link 
               href="/" 
-              className="text-white/70 hover:text-white text-sm transition-all duration-300 glow-hover px-3 py-1 rounded-lg"
+              className="text-gray-600 hover:text-gray-900 text-sm transition-colors"
             >
               ← Back to home
             </Link>

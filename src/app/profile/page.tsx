@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { mockCurrentUser } from '../../lib/mockUser'
 import NotificationDropdown from '../../components/Notifications/NotificationDropdown'
 import PeerReviewDropdown from '../../components/PeerReview/PeerReviewDropdown'
+import HashtagBackground from '../../components/HashtagBackground'
 
 export default function ProfilePage() {
   const [user, setUser] = useState(mockCurrentUser)
@@ -51,9 +52,12 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
+      {/* Animated Hashtag Background */}
+      <HashtagBackground />
+      
       {/* Header */}
-      <header className="border-b border-gray-200 bg-white">
+      <header className="border-b border-gray-200 bg-white relative z-10">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-3">
@@ -81,7 +85,7 @@ export default function ProfilePage() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      <div className="max-w-4xl mx-auto px-6 py-8 relative z-10">
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-light text-gray-900 mb-2">Profile Settings</h1>
